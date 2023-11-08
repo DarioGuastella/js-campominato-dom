@@ -7,8 +7,9 @@ difficoltà.addEventListener('change', function () {
 //Definisco container e pulsante di play
 
 let grid = document.getElementById("container");
+let score = document.getElementById("selectedCells")
 const playBtn = document.getElementById("myBtn");
-
+const gameover = document.getElementById("gameover");
 //Evento al click del pulsante "play"
 
 playBtn.addEventListener("click", function () {
@@ -53,6 +54,7 @@ console.log(`Celle con le bombe: ${bombsCells}`);
     }
   }
 });
+let clicks = 0;
 
 //Fine evento al click
 
@@ -62,16 +64,20 @@ function creaCella(numero, bombsCells) {
   cella.classList.add("square");
   // Evento per ogni cella
   cella.addEventListener("click", function () {
+
+    
     
     if(bombsCells.includes(numero)) {
       console.log("Hai perso");
       cella.classList.add("bomb");
+      grid.innerHTML = '<img id="gameover" src="explosion-explosion-meme.gif" alt="">';
+      selectedCells.innerHTML = `Hai beccato una bomba! HIGHSCORE: ${clicks} caselle`;
     } else {
       cella.classList.add("highlight");
       console.log("Cella selezionata", numero);
+      clicks++
+      selectedCells.innerHTML = `Celle selezionate: ${clicks}`;
     }
-    console.log(`numero: ${numero}`);
-    console.log(`celleconbombe:${bombsCells}`);
   });
 
   return cella;
