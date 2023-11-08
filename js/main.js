@@ -27,10 +27,16 @@ playBtn.addEventListener("click", function () {
     numCelle = 100;
     grid.innerHTML = "";
   }
-  //Genero numero random compreso nel numero totali di celle.
+  //Genero 16 numeri random compresi fra i numeri totali di celle.
 
-  const bomb = numeroRandom(1, numCelle);
-    console.log (`Cella con bomba: ${bomb}`);
+let bombsCells = [];
+while(bombsCells.length < 16){
+    let randomNumber = numeroRandom(1, numCelle);
+    if(bombsCells.indexOf(randomNumber) === -1) {
+      bombsCells.push(randomNumber);
+    }
+  }
+console.log(`Celle con le bombe: ${bombsCells}`);
 
   // Creo ogni cella una per una, richiamando la funzione, 
   // inserendo all'interno di ogni cella il numero dell'index.
@@ -47,6 +53,7 @@ playBtn.addEventListener("click", function () {
     }
   }
 });
+
 //Fine evento al click
 
 //////////////////////////FUNZIONI////////////////////////////////////
@@ -57,6 +64,7 @@ function creaCella(numero) {
   cella.addEventListener("click", function () {
     console.log("Cella selezionata", numero);
     cella.classList.add("highlight");
+    
   });
 
   return cella;
