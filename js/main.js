@@ -32,7 +32,7 @@ playBtn.addEventListener("click", function () {
 let bombsCells = [];
 while(bombsCells.length < 16){
     let randomNumber = numeroRandom(1, numCelle);
-    if(bombsCells.indexOf(randomNumber) === -1) {
+    if(bombsCells.indexOf(randomNumber) === -1) {  //aggiunge il numero solo se non è presente nell'array
       bombsCells.push(randomNumber);
     }
   }
@@ -42,7 +42,7 @@ console.log(`Celle con le bombe: ${bombsCells}`);
   // inserendo all'interno di ogni cella il numero dell'index.
 
   for (let i = 1; i <= numCelle; i++) {
-    let cella = creaCella(i);
+    let cella = creaCella(i, bombsCells);
     grid.appendChild(cella);
     cella.innerHTML = i;
     if (numCelle == 81) {
@@ -57,14 +57,21 @@ console.log(`Celle con le bombe: ${bombsCells}`);
 //Fine evento al click
 
 //////////////////////////FUNZIONI////////////////////////////////////
-function creaCella(numero) {
+function creaCella(numero, bombsCells) {
   const cella = document.createElement("div");
   cella.classList.add("square");
   // Evento per ogni cella
   cella.addEventListener("click", function () {
-    console.log("Cella selezionata", numero);
-    cella.classList.add("highlight");
     
+    if(bombsCells.includes(numero)) {
+      console.log("Hai perso");
+      cella.classList.add("bomb");
+    } else {
+      cella.classList.add("highlight");
+      console.log("Cella selezionata", numero);
+    }
+    console.log(`numero: ${numero}`);
+    console.log(`celleconbombe:${bombsCells}`);
   });
 
   return cella;
