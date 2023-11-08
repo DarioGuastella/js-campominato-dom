@@ -72,7 +72,8 @@ function creaCella(numero, bombsCells) {
       cella.classList.add("bomb");
       grid.innerHTML = '<img id="gameover" src="explosion-explosion-meme.gif" alt="">';
       selectedCells.innerHTML = `Hai beccato una bomba! HIGHSCORE: ${clicks} caselle`;
-    } else {
+    } else if (cella.classList.contains("highlight")){
+    }else {
       cella.classList.add("highlight");
       console.log("Cella selezionata", numero);
       clicks++
