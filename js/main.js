@@ -56,7 +56,7 @@ function creaCella(numero) {
   // Evento per ogni cella
   cella.addEventListener("click", function () {
     console.log("Cella selezionata", numero);
-    cella.classList.toggle("highlight");
+    cella.classList.add("highlight");
   });
 
   return cella;
